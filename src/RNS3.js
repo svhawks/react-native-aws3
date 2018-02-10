@@ -38,7 +38,8 @@ export class RNS3 {
       contentType: file.type
     }
 
-    const url = `https://${options.bucket}.${options.awsUrl || AWS_DEFAULT_S3_HOST}`
+    const protocol = options.noSsl ? 'http' : 'https';
+    const url = `${protocol}://${options.bucket}.${options.awsUrl || AWS_DEFAULT_S3_HOST}`
     const method = "POST"
     const policy = S3Policy.generate(options)
 
